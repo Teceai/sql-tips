@@ -1,1 +1,31 @@
+# return information from a relational database. To view the table
+SELECT * FROM table_name;
+# * - allows to select every column in a table without having to name each one individually. Here, the result set contains every column in the celebs table.
+# SELECT statements are used to fetch data from a database. Here, SELECT returns all data in the column_2 of the table_name table.
+SELECT column_2 FROM table_name;
+
+# Data types: INTEGER (whole number), TEXT (text string), DATE (YYYY-MM-DD), REAL (decimal value)
+
+CREATE TABLE table_name (column_1 data_type, column_2 data_type, column_3 data_type);
+
+# Add a row to the table. In the code editor type
+INSERT INTO table_name (column_1, column_2, column_3) VALUES (1, 'Justin Bieber', 21);
+INSERT INTO table_name (column_1, column_2, column_3) VALUES (2, 'Beyonce Knowles', 33); 
+INSERT INTO table_name (column_1, column_2, column_3) VALUES (3, 'Jeremy Lin', 26); 
+INSERT INTO table_name (column_1, column_2, column_3) VALUES (4, 'Taylor Swift', 26);
+
+# edit a row. UPDATE is a clause that edits a row in the table. SET is a clause that indicates the column to edit. 22 is the new value 
+# that is going to be inserted into the edited column. WHERE is a clause that indicates which row(s) to update with the new column value.
+UPDATE table_name 
+SET column_3 = 22 
+WHERE column_1 = 1; 
+
+# Add a new column to the table. ADD COLUMN is a clause that lets add a new column to a table. TEXT is the data type for the new column
+ALTER TABLE table_name ADD COLUMN twitter_handle TEXT; 
+
+# The DELETE FROM statement deletes one or more rows from a table. WHERE is a clause that lets select which rows to delete. IS NULL is a 
+# condition in SQL that returns true when the value is NULL and false otherwise.
+DELETE FROM table_name WHERE twitter_handle IS NULL;
+
+
 
