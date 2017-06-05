@@ -52,10 +52,21 @@ SELECT * FROM movies WHERE name BETWEEN 'A' AND 'J';
 # Only include movies with years between 1990 up to and including 2000.
 SELECT * FROM movies WHERE year BETWEEN 1990 AND 2000;
 
-# Let's just return the movies that are comedies.
+# Sometimes you want to combine multiple conditions in a WHERE clause to make the result set more specific and useful. 
+# One way of doing this is to use the AND operator. AND genre = 'comedy' is the second condition in the WHERE clause.
 SELECT * FROM movies WHERE year BETWEEN 1990 AND 2000 AND genre = 'comedy';
 
+# The OR operator can also be used to combine more than one condition in a WHERE clause. The OR operator evaluates each 
+# condition separately and if any of the conditions are true then the row is added to the result set.
+SELECT * FROM movies WHERE genre = 'comedy' OR year < 1980;
 
+# to list the data in our result set in a particular order. DESC is a keyword in SQL that is used with ORDER BY to sort the results 
+# in descending order (high to low or Z-A). Here, it sorts all of the movies from highest to lowest by their IMDb rating. ASC is a 
+# keyword in SQL that is used with ORDER BY to sort the results in ascending order.
+SELECT * FROM movies ORDER BY imdb_rating DESC;
+
+# LIMIT lets you specify the maximum number of rows the result set will have. only returns the three lowest rated movies.
+SELECT * FROM movies ORDER BY imdb_rating ASC LIMIT 3;
 
 
 
