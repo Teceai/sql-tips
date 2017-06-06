@@ -63,10 +63,46 @@ SELECT * FROM movies WHERE genre = 'comedy' OR year < 1980;
 # to list the data in our result set in a particular order. DESC is a keyword in SQL that is used with ORDER BY to sort the results 
 # in descending order (high to low or Z-A). Here, it sorts all of the movies from highest to lowest by their IMDb rating. ASC is a 
 # keyword in SQL that is used with ORDER BY to sort the results in ascending order.
-SELECT * FROM movies ORDER BY imdb_rating DESC;
+SELECT * FROM movies 
+ORDER BY imdb_rating DESC;
 
 # LIMIT lets you specify the maximum number of rows the result set will have. only returns the three lowest rated movies.
-SELECT * FROM movies ORDER BY imdb_rating ASC LIMIT 3;
+SELECT * FROM movies 
+ORDER BY imdb_rating ASC LIMIT 3;
+
+### AGGREGATION ###
+
+# COUNT() is a function that takes the name of a column as an argument and counts the number of rows where the column is not NULL. 
+# Here, we want to count every row so we pass * as an argument.
+SELECT COUNT(*) FROM fake_apps;
+
+# to return the total number of free apps in the table
+SELECT COUNT(*) FROM fake_apps 
+WHERE price = 0;
+
+# Count the number of apps at each price. GROUP BY is only used with aggregate functions. It is used in collaboration with the 
+# SELECT statement to arrange identical data into groups. Here, our aggregate function is COUNT() and we are passing price as an 
+# argument to GROUP BY. It is usually helpful to SELECT the column you pass as an argument to GROUP BY. Here we select price and 
+# COUNT(*). You can see that the result set is organized into two columns making it easy to see the number of apps at each price.
+SELECT price, COUNT (*) FROM fake_apps 
+GROUP BY price;
+
+# Count the total number of apps at each price that have been downloaded more than 20,000 times
+SELECT price, COUNT(*) FROM fake_apps 
+WHERE downloads > 20000 
+GROUP BY PRICE;
+
+# What is the total number of downloads for all of the apps combined. SUM() is a function that takes the name of a column as an 
+# argument and returns the sum of all the values in that column.
+SELECT SUM(downloads) FROM fake_apps;
+
+# Calculate the total number of downloads for each category
+SELECT category, SUM(downloads) FROM fake_apps 
+GROUP BY category;
+
+# MAX() is a function that takes the name of a column as an argument and returns the largest value in that column. 
+SELECT MAX(downloads) FROM fake_apps;
+
 
 
 
