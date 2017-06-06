@@ -115,9 +115,43 @@ SELECT price, ROUND(AVG(downloads)) FROM fake_apps GROUP BY price;
 
 ### MULTIPLE TABLES ###
 
+# PRIMARY KEY serves as a unique identifier for each row or record in a given table. The primary key is an id value for a record. 
+# We're going to use this value to connect artists to the albums they have produced. By specifying that the id column is the 
+# PRIMARY KEY, SQL makes sure that none of the values in this column are NULL & each value in this column is unique.
+# A table can not have more than one PRIMARY KEY column.
+CREATE TABLE artists (id INTEGER PRIMARY KEY, name TEXT);
 
+# A foreign key is a column that contains the primary key of another table in the database to connect rows in two different tables. 
+# Unlike primary keys, foreign keys do not need to be unique and can be NULL. Here, artist_id is a foreign key in the albums table. 
 
+# combines data from both tables. One way to query multiple tables is to write a SELECT statement with multiple table names separated 
+# by a comma. This is also known as a cross join. When querying more than one table, column names need to be specified by 
+# table_name.column_name.
+SELECT albums.name, albums.year, artists.name FROM albums, artists;
 
+# JOINs are used to combine rows from two or more tables. The most common type of join in SQL is an inner join. An inner join will 
+# combine rows from different tables if the join condition is true.
+# SELECT * specifies the columns our result set will have. FROM albums specifies the first table we are querying. JOIN artists ON 
+# specifies the type of join we are going to use as well as the name of the second table. Here, we want to do an inner join and the 
+# second table we want to query is artists. albums.artist_id = artists.id is the join condition that describes how the two tables are 
+# related to each other. We know it will only match one row in the artists table because id is the PRIMARY KEY of artists.
+SELECT * FROM albums 
+JOIN artists ON albums.artist_id = artists.id;
+
+# Not every album in our database has an artist. This is a join statement that includes these albums. Outer joins also combine rows 
+# from >=2 tables, but unlike inner joins, they do not require the join condition to be met. Instead, every row in the left table is 
+# returned in the result set, and if the join condition is not met, then NULL values are used to fill in the columns from the right 
+# table.
+SELECT * FROM albums LEFT 
+JOIN artists ON albums.artist_id = artists.id;
+
+# AS allows to rename a column or table. The columns have not been renamed in either table. The aliases only appear in the result set.
+SELECT albums.name AS 'Album', albums.year, artists.name AS 'Artist'
+FROM albums
+JOIN artists ON albums.artist_id = artists.id
+WHERE albums.year > 1980;
+
+### TABLETRANSFORMATION AND SUBQUERIES ### 
 
 
 
