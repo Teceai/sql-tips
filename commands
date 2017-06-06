@@ -100,8 +100,21 @@ SELECT SUM(downloads) FROM fake_apps;
 SELECT category, SUM(downloads) FROM fake_apps 
 GROUP BY category;
 
-# MAX() is a function that takes the name of a column as an argument and returns the largest value in that column. 
+# MAX() is a function that takes the name of a column as an argument and returns the largest value in that column. MIN() is opposite
 SELECT MAX(downloads) FROM fake_apps;
+
+# Return the names of the most downloaded apps in each category
+SELECT name, category, MAX(downloads) FROM fake_apps 
+GROUP BY category;
+
+# AVERAGE - AVG(). ROUND(var, number) - rounding the average number of downloads to two decimal places for each price. 
+SELECT price, ROUND(AVG(downloads), 2) FROM fake_apps GROUP BY price;
+
+# Round the average number of downloads to the nearest integer for each price.
+SELECT price, ROUND(AVG(downloads)) FROM fake_apps GROUP BY price;
+
+### MULTIPLE TABLES ###
+
 
 
 
